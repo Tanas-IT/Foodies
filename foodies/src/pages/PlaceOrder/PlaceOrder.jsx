@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 import { calculateCartTotals } from "../../util/cartUitl";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { API_BASE_URL } from "../../config/api";
 
 const PlaceOrder = () => {
   const [userAddress, setUserAddress] = useState("");
@@ -46,7 +47,7 @@ const PlaceOrder = () => {
 
       // Call API backend
       const res = await axios.post(
-        "http://localhost:8080/api/vnpay/create-payment",
+        `${API_BASE_URL}/api/vnpay/create-payment`,
         orderRequest,
         {
           headers: {
