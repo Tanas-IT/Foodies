@@ -1,0 +1,12 @@
+td div {
+    white-space: normal;
+    /* cho phép xuống dòng */
+    word-wrap: break-word;
+    /* xuống dòng nếu quá dài */
+    max-width: 700px;
+    /* giới hạn chiều rộng để ép xuống dòng */
+}
+
+table td {
+    vertical-align: middle;
+}
