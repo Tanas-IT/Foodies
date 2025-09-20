@@ -9,13 +9,10 @@ const App = () => {
   return (
     <>
       <Routes>
-        {/* Khi vào / thì chuyển hướng sang /login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Trang login */}
         <Route path="/login" element={<Login />} />
 
-        {/* MainLayout chỉ vào được khi đã login */}
         <Route
           path="/*"
           element={
