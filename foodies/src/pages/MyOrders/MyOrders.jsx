@@ -27,7 +27,7 @@ const MyOrders = () => {
       return;
     }
     const result = axios
-      .post(`${API_BASE_URL}/api/vnpay/return`, {
+      .post(`${API_BASE_URL}/api/vnpay/return`, null, {
         params: Object.fromEntries(query),
       })
       .then((res) => {
@@ -38,6 +38,10 @@ const MyOrders = () => {
           toast.error("Payment error");
           navigate(`/order`);
         }
+      })
+      .catch((error) => {
+        toast.error("Payment error");
+        navigate(`/order`);
       });
   }, []);
 

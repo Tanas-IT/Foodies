@@ -94,7 +94,7 @@ public class VnPayServiceImpl implements VnPayService{
     }
 
     @Override
-    public String vnpayReturn(Map<String, String> allParams) {
+    public String vnpayReturn(Map<String, String> allParams) throws Exception {
         // allParams chứa các param VNPay gửi về, ví dụ vnp_ResponseCode, vnp_SecureHash, vnp_TxnRef, vnp_TransactionNo, vnp_Amount...
         try {
             String vnpSecureHash = allParams.get("vnp_SecureHash");
@@ -140,7 +140,7 @@ public class VnPayServiceImpl implements VnPayService{
                 throw new Exception("Invalid secure hash");
             }
         } catch (Exception ex) {
-            return "Error processing return: " + ex.getMessage();
+            throw new Exception("Error processing return: " + ex.getMessage());
         }
     }
 
@@ -182,13 +182,13 @@ public class VnPayServiceImpl implements VnPayService{
             }
 
             if ("00".equals(responseCode)) {
-                order.setOrderStatus("SUCCESS");
+                order.setPaymentStatus("SUCCESS");
                 order.setVnpResponseCode(responseCode);
                 order.setVnpTransactionNo(allParams.get("vnp_TransactionNo"));
                 orderRepository.save(order);
                 return "00";
             } else {
-                order.setOrderStatus("FAILED");
+                order.setPaymentStatus("FAILED");
                 order.setVnpResponseCode(responseCode);
                 orderRepository.save(order);
                 return "00"; // trả 00 để VNPay không gửi lại (tuỳ logic bạn muốn)

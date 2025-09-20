@@ -22,7 +22,6 @@ const MainLayout = () => {
             <Route path="/add" element={<AddFood />} />
             <Route path="/list" element={<ListFood />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/" element={<ListFood />} />
           </Routes>
         </div>
       </div>

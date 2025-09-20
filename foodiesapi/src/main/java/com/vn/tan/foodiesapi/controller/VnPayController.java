@@ -36,7 +36,7 @@ public class VnPayController {
     }
 
     @PostMapping("/return")
-    public ResponseEntity<ApiResponse> vnpayReturn(@RequestParam Map<String,String> allParams) {
+    public ResponseEntity<ApiResponse> vnpayReturn(@RequestParam Map<String,String> allParams) throws Exception {
         ApiResponse apiResponse = new ApiResponse();
         try {
             apiResponse.setStatusCode(HttpStatus.OK.value());

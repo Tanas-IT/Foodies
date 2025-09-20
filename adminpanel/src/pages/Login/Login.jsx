@@ -36,7 +36,7 @@ const Login = () => {
         if (role.toLowerCase() !== "admin") {
           toast.error("You do not have permit to login admin panel");
         } else {
-          navigate("/");
+          navigate("/list");
         }
       } else {
         toast.error("Unable to login. Please try again");
