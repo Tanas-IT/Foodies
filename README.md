@@ -74,7 +74,7 @@ The system is divided into **three main projects**:
   ![Admin View And Remove Food Screenshot](https://res.cloudinary.com/deas18dyx/image/upload/v1758366462/View_Food_evobwo.png)
 
 - **Order Management**  
-  ![Admin Order Management Screenshot](lhttps://res.cloudinary.com/deas18dyx/image/upload/v1758366370/List_Order_pijmcl.png)
+  ![Admin Order Management Screenshot](https://res.cloudinary.com/deas18dyx/image/upload/v1758366370/List_Order_pijmcl.png)
 
 ---
 
