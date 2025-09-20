@@ -29,7 +29,7 @@ export const StoreContextProvider = (props) => {
   };
   const fetchFoodList = async () => {
     try {
-      const result = await getAllFood(pageIndex);
+      const result = await getAllFood(pageIndex, 6);
       console.log(result);
       setFoodList(result.data.data.data);
     } catch (error) {

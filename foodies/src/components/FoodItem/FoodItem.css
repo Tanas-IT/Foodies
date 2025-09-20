@@ -1,0 +1,31 @@
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* số dòng tối đa */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    max-width: 300px;
+    /* để chữ không tràn card */
+    position: relative;
+    white-space: normal;
+}
+
+/* Tooltip CSS */
+.card-text:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: normal;
+    max-width: 400px;
+    z-index: 999;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 4px;
+}

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { API_BASE_URL } from "../config/api";
 
-export const getAllFood = async (pageIndex) => {
+export const getAllFood = async (pageIndex, pageSize) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/foods?${pageIndex}`);
+    const response = await axios.get(
+      `${API_BASE_URL}/api/foods?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    );
     return response;
   } catch (error) {
     console.log("Error fetching food list:", error);

@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import "./FoodItem.css";
 
 const FoodItem = ({ name, description, id, imageURL, price }) => {
   const { increaseQty, decreaseQty, quantities } = useContext(StoreContext);
@@ -20,7 +21,9 @@ const FoodItem = ({ name, description, id, imageURL, price }) => {
 
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">{description}</p>
+          <p className="card-text" data-tooltip={description}>
+            {description}
+          </p>
           <div className="d-flex justify-content-between align-items-center">
             <span className="h5 mb-0">
               {new Intl.NumberFormat("vi-VN", {
