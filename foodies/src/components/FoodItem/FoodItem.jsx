@@ -21,7 +21,7 @@ const FoodItem = ({ name, description, id, imageURL, price }) => {
 
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text" data-tooltip={description}>
+          <p className="card-text" title={description}>
             {description}
           </p>
           <div className="d-flex justify-content-between align-items-center">
