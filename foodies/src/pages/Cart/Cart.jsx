@@ -10,6 +10,7 @@ const Cart = () => {
     useContext(StoreContext);
   // cart items
   const cartItems = foodList.filter((food) => quantities[food.id] > 0);
+  console.log("cartItems: ", cartItems);
 
   // calculation
   const { subtotal, shipping, tax, total } = calculateCartTotals(
