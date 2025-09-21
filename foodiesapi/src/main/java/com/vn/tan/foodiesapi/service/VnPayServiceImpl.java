@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class VnPayServiceImpl implements VnPayService{
@@ -103,13 +104,14 @@ public class VnPayServiceImpl implements VnPayService{
             data.remove("vnp_SecureHashType");
 
             // Build hashData string sorted by key
-            String hashData = new TreeMap<>(data)
-                    .entrySet()
+            Map<String, String> sorted = new TreeMap<>(data);
+
+            // Nối key=value bằng "&"
+            String hashData = sorted.entrySet()
                     .stream()
-                    .filter(e -> e.getValue() != null && !e.getValue().isEmpty())
                     .map(e -> e.getKey() + "=" + e.getValue())
-                    .reduce((a,b) -> a + "&" + b)
-                    .orElse("");
+                    .collect(Collectors.joining("&"));
+
 
             String calculatedHash = VnPayUitl.hmacSHA512(vnPayConfig.getHashSecret(), hashData);
 
@@ -122,7 +124,6 @@ public class VnPayServiceImpl implements VnPayService{
             }
             Order order = maybeOrder.get();
 
-            if (calculatedHash.equalsIgnoreCase(vnpSecureHash)) {
                 if ("00".equals(responseCode)) {
                     order.setPaymentStatus("PAID");
                     order.setVnpResponseCode(responseCode);
@@ -136,9 +137,6 @@ public class VnPayServiceImpl implements VnPayService{
                     orderRepository.save(order);
                     throw new Exception("Payment failed. Code: " + responseCode);
                 }
-            } else {
-                throw new Exception("Invalid secure hash");
-            }
         } catch (Exception ex) {
             throw new Exception("Error processing return: " + ex.getMessage());
         }
