@@ -5,6 +5,7 @@ import axios from "axios";
 import {
   addToCart,
   getCartData,
+  removeItemFromCart,
   removeQuantityFromCart,
 } from "../services/cartService";
 
@@ -43,7 +44,7 @@ export const StoreContextProvider = (props) => {
       delete updateQuantites[foodId];
       return updateQuantites;
     });
-    removeItemQuantityFromCart(foodId, token);
+    removeItemFromCart(foodId, token);
   };
 
   const loadCartData = async (token) => {
