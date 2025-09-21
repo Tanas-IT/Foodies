@@ -65,6 +65,19 @@ public class CartServiceImpl implements CartService {
        return convertToResponse(cart);
     }
 
+    @Override
+    public CartResponse removeItemFromCart(CartRequest cartRequest) {
+        String loggedUserId = userService.findByUserId();
+        Cart cart = cartRepository.findByUserId(loggedUserId).orElseThrow(() -> new RuntimeException("Cart is not found"));
+        Map<String, Integer> cartItems = cart.getItems();
+        if(cartItems.containsKey(cartRequest.getFoodId())) {
+            cartItems.remove(cartRequest.getFoodId());
+            cart = cartRepository.save(cart);
+            convertToResponse(cart);
+        }
+        return convertToResponse(cart);
+    }
+
     private CartResponse convertToResponse(Cart cart) {
       return CartResponse.builder()
                 .id(cart.getId())

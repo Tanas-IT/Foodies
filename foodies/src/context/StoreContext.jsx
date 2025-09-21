@@ -43,6 +43,7 @@ export const StoreContextProvider = (props) => {
       delete updateQuantites[foodId];
       return updateQuantites;
     });
+    removeItemQuantityFromCart(foodId, token);
   };
 
   const loadCartData = async (token) => {

@@ -5,4 +5,5 @@ public class CartRoute {
     public static final String ADD_TO_CART= "/add";
     public static final String CLEAR_CART= "/clear";
     public static final String REMOVE_FROM_CART= "/remove";
+    public static final String REMOVE_ITEM_FROM_CART= "/item/remove";
 }

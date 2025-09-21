@@ -98,4 +98,26 @@ public class CartController {
        }
     }
 
+    @PostMapping(CartRoute.REMOVE_ITEM_FROM_CART)
+    public ResponseEntity<ApiResponse> removeItemFromCart(@RequestBody  CartRequest request) {
+        ApiResponse apiResponse = new ApiResponse();
+        try {
+            String foodId = request.getFoodId();
+            if(foodId == null || foodId.isEmpty()) {
+                apiResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+                apiResponse.setMessage("FoodId not found");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
+            }
+            CartResponse response = cartService.removeItemFromCart(request);
+            apiResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+            apiResponse.setMessage("Remove Item From Cart Success");
+            apiResponse.setData(response);
+            return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+        }catch (Exception ex) {
+            apiResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+            apiResponse.setMessage(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+        }
+    }
+
 }
